@@ -100,8 +100,9 @@ create view sync_stats as
     )
   select css.tree_id
        , css.completed
-       , ( select max(s.ts)
-           from sync s
+       , ( select max(tas.sync_ts)
+           from trees_and_syncs tas
+           where tas.tree_id = css.tree_id
          ) as latest
        , ( select count(*)
            from trees_and_syncs tas
