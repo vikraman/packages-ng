@@ -12,6 +12,18 @@ Docs
 
 * `Project plan <https://docs.google.com/document/d/1uzSeft-KzMActMYmNt4MUMXxTRWD9jzzrBHLK-MbnSs/>`_
 
+Projects we aim to replace/combine
+----------------------------------
+
+  * gstats
+  * gentoo-smolt
+  * gentoostats 1
+  * gentoostats 2
+  * packages
+  * packages2
+  * gentoo-packages
+  * ...
+
 License
 -------
 
