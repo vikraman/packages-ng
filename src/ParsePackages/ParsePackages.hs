@@ -1,3 +1,4 @@
+{-# LANGUAGE NamedFieldPuns    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 import           Control.Applicative
@@ -31,17 +32,17 @@ data Package = Package { category    :: BS.ByteString
                        } deriving Show
 
 parseCPV :: Parser CPV
-parseCPV = do string "./"
+parseCPV = do _ <- string "./"
               category <- takeWhile (/= '/')
-              char '/'
+              _ <- char '/'
               package <- takeWhile (/= '-')
-              char '-'
+              _ <- char '-'
               version <- takeByteString
               return $ CPV category package version
 
 parseLine :: Parser (BS.ByteString, BS.ByteString)
 parseLine = do variable <- takeWhile (/= '=')
-               char '='
+               _ <- char '='
                value <- takeWhile (/= '\n')
                return (variable, value)
 
@@ -108,5 +109,5 @@ main = do args <- getArgs
                        path : _ -> path
           setCurrentDirectory $ repo </> "metadata/md5-cache"
           allFiles <- namesMatching "*/*"
-          printPackage `mapConcurrently` allFiles
+          _ <- printPackage `mapConcurrently` allFiles
           return ()
