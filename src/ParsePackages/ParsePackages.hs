@@ -35,6 +35,7 @@ parseCPV :: Parser CPV
 parseCPV = do _ <- string "./"
               category <- takeWhile (/= '/')
               _ <- char '/'
+              -- TODO: this should be greedy
               package <- takeWhile (/= '-')
               _ <- char '-'
               version <- takeByteString

@@ -8,7 +8,7 @@ create table tree
 ( primary key (id)
 
 , id                 serial    not null
-, name               citext    not null      check (name <> '')
+, name               citext    not null      check (name <> '') check (name = trim(lower(name)))
 , description        citext    not null      check (description <> '')
 , homepage           text      not null      check (homepage <> '')
 
@@ -27,7 +27,7 @@ create table tree
 -- official/unofficial
 , status             citext    not null      check (status <> '') check (status = trim(lower(status)))
 
--- TODO: calculated by gentoostats
+-- TODO: calculated by us
 -- , popularity   double precision     not null     default 0
 
 -- tree location on the FS (absolute path with a trailing slash)
@@ -48,8 +48,8 @@ create table repo
 , url                text      not null      check (url <> '')
 
 -- Ideally we want to use the timestamp of the last commit (and not the mtime
--- from our FS).
-, mtime        timestamp not null
+-- from the file system).
+, mtime              timestamp not null
 
 , unique (tree_id, type, url)
 );
