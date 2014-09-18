@@ -24,6 +24,15 @@ Projects we aim to replace/combine
   * gentoo-packages
   * ...
 
+Building
+--------
+
+.. code ::
+
+    $ cabal sandbox init                   # Initialise the sandbox
+    $ cabal install --only-dependencies    # Install dependencies into the sandbox
+    $ cabal build                          # Build packages-ng inside the sandbox
+
 License
 -------
 
