@@ -1,11 +1,16 @@
-#!/bin/sh
-# Usage: sudo -u postgres ./db-recreate.sh
-# TODO: replace this with puppet
+#!/bin/bash
 
-set -e
-set -x
+set -e # exit on errors
+set -x # echo executed commands
 
-. ./db-env.sh
+if ! (/sbin/service postgresql-9.3 status 2>/dev/null | grep --quiet 'status: started'); then
+  echo 'postgres is not running!'
+  exit 1
+fi
+
+SCRIPT_DIRNAME=$(dirname "$(readlink -f "$0")")
+
+. "${SCRIPT_DIRNAME}/env.sh"
 
 dropdb --username=postgres "$PGDATABASE" || true
 dropuser --username=postgres "$PGUSER" || true
