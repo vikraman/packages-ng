@@ -28,9 +28,10 @@ Building
 
 .. code ::
 
-    $ cabal sandbox init                   # Initialise the sandbox
-    $ cabal install --only-dependencies    # Install dependencies into the sandbox
-    $ cabal build                          # Build packages-ng inside the sandbox
+    $ cabal sandbox init                               # Initialise the sandbox
+    $ cabal install --only-dep --jobs --enable-tests   # Install dependencies into the sandbox
+    $ cabal build                                      # Build packages-ng inside the sandbox
+    $ cabal test --show-details=streaming
 
 License
 -------

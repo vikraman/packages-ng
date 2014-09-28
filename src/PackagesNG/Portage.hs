@@ -1,4 +1,4 @@
-module Common (CPV(..), Metadata, Package(..)) where
+module PackagesNG.Portage (CPV(..), Metadata, Package(..)) where
 
 import qualified Data.ByteString as BS (ByteString ())
 import qualified Data.Map.Strict as M (Map ())
