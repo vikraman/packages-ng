@@ -2,7 +2,7 @@
 
 module CommonAlt where
 
-import Data.Time.Calendar (Day)
+import           Data.Time.Calendar (Day)
 
 class Named a where
     name :: a -> String

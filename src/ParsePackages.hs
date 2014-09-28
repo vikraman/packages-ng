@@ -1,18 +1,28 @@
 {-# LANGUAGE NamedFieldPuns    #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-import           Common (CPV(..), Metadata, Package(..))
-import           Control.Applicative ((<*))
-import           Control.Concurrent.Async (mapConcurrently)
-import qualified Data.Attoparsec.ByteString.Char8 as Atto (parseOnly, decimal, sepBy, space, takeTill, many1, takeWhile, isSpace, char, endOfLine, char, string, takeByteString, Parser())
-import qualified Data.ByteString                  as BS (ByteString(), readFile)
+import           Control.Applicative              ((<*))
+import           Control.Concurrent.Async         (mapConcurrently)
+import qualified Data.Attoparsec.ByteString.Char8 as Atto (Parser (), char,
+                                                           char, decimal,
+                                                           endOfLine, isSpace,
+                                                           many1, parseOnly,
+                                                           sepBy, space, string,
+                                                           takeByteString,
+                                                           takeTill, takeWhile)
+import qualified Data.ByteString                  as BS (ByteString (),
+                                                         readFile)
 import qualified Data.ByteString.Char8            as BSC (pack)
-import qualified Data.Map.Strict                  as M (Map(), findWithDefault, lookup, fromList)
-import           System.Directory (setCurrentDirectory)
-import           System.Environment (getArgs)
-import           System.FilePath ((</>))
-import           System.FilePath.Glob (namesMatching)
-import           System.IO (stderr, hPutStrLn)
+import qualified Data.Map.Strict                  as M (Map (), findWithDefault,
+                                                        fromList, lookup)
+import           System.Directory                 (setCurrentDirectory)
+import           System.Environment               (getArgs)
+import           System.FilePath                  ((</>))
+import           System.FilePath.Glob             (namesMatching)
+import           System.IO                        (hPutStrLn, stderr)
+
+import           Common                           (CPV (..), Metadata,
+                                                   Package (..))
 
 parseCPV :: Atto.Parser CPV
 parseCPV = do

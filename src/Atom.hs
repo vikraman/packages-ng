@@ -1,6 +1,6 @@
-module Portage.Atom where
+module Atom where
 
-import Prelude hiding (EQ, GT, LT)
+import           Prelude hiding (EQ, GT, LT)
 
 -- | The category of a package, for example @dev-lang@
 type Category = String

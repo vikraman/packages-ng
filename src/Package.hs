@@ -1,6 +1,6 @@
-module Portage.Package where
+module Package where
 
-import Portage.Atom
+import           Atom
 
 -- | @dev-lang\/ghc@
 data CP = CP Category Package
