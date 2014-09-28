@@ -6,7 +6,7 @@ homepage:            https://github.com/vikraman/packages-ng
 license:             GPL-2
 license-file:        LICENSE
 author:              gg7
-maintainer:          gg7@users.noreply.github.com
+maintainer:          git@gg7.io
 -- copyright:
 category:            Web
 build-type:          Simple
@@ -21,8 +21,9 @@ cabal-version:       >=1.10
 --   -- hs-source-dirs:
 --   default-language:    Haskell2010
 
-executable packages-ng
-  build-depends:       base >=4.6 && <4.7, time
+executable png
+  build-depends:       base >=4.6 && <4.7
+                       , time
   hs-source-dirs:      src/
   main-is:             Main.hs
   default-language:    Haskell2010
