@@ -36,7 +36,7 @@ Here's a superficial explanation that's probably wrong:
 
 #. Variables such as P/PF/PN/PV/etc. get set to their correct values.
 
-   See `pym/portage/package/ebuild/doebuild.py / doebuild_environment()`
+   See `doebuild_environment()` in `pym/portage/package/ebuild/doebuild.py`
 
 #. EAPI gets parsed from the ebuild with a regex.
 
@@ -55,7 +55,7 @@ Here's a superficial explanation that's probably wrong:
 
    See `pym/_emerge/EbuildPhase.py`
 
-#. `ebuild.sh` gets spawned and echo's the relevant variables.
+#. `ebuild.sh` gets spawned and echoes the relevant variables.
 
    See `bin/ebuild.sh`, search for 'auxdbkeys='.
 
