@@ -50,8 +50,8 @@ orElse (Just a) _  = Right a
 lookup' :: (Ord k, Show k) => k -> M.Map k a -> Either String a
 lookup' k m = M.lookup k m `orElse` ("Missing field " ++ show k)
 
-lookup'' :: Ord k => a -> k -> M.Map k a -> Either String a
-lookup'' a k m = Right $ M.findWithDefault a k m
+lookupWithDef :: Ord k => a -> k -> M.Map k a -> Either String a
+lookupWithDef a k m = Right $ M.findWithDefault a k m
 
 parseWord :: Atto.Parser BS.ByteString
 parseWord = Atto.takeTill Atto.isSpace
@@ -64,17 +64,17 @@ parsePackage cpvString metadataString = do
   CPV category package version <- Atto.parseOnly parseCPV cpvString
   metadata    <- Atto.parseOnly parseMetadata metadataString
   description <- lookup' "DESCRIPTION" metadata
-  eapis       <- lookup'' "5" "EAPI" metadata
+  eapis       <- lookupWithDef "5" "EAPI" metadata
   eapi        <- Atto.parseOnly Atto.decimal eapis
   homepages   <- lookup' "HOMEPAGE" metadata
   homepage    <- Atto.parseOnly parseWords homepages
-  iuses       <- lookup'' "" "IUSE" metadata
+  iuses       <- lookupWithDef "" "IUSE" metadata
   iuse        <- Atto.parseOnly parseWords iuses
-  keywordss   <- lookup'' "" "KEYWORDS" metadata
+  keywordss   <- lookupWithDef "" "KEYWORDS" metadata
   keywords    <- Atto.parseOnly parseWords keywordss
   licenses    <- lookup' "LICENSE" metadata
   license     <- Atto.parseOnly parseWords licenses
-  srcUris     <- lookup'' "" "SRC_URI" metadata
+  srcUris     <- lookupWithDef "" "SRC_URI" metadata
   srcUri      <- Atto.parseOnly parseWords srcUris
   slot        <- lookup' "SLOT" metadata
   return $ Package category

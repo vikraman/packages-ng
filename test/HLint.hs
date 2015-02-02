@@ -5,9 +5,9 @@ import           System.Exit            (exitFailure, exitSuccess)
 
 arguments :: [String]
 arguments =
-    [ "src"
-    , "parse-packages"
-    , "tests"
+    [ "parse-packages"
+    , "src"
+    , "test"
     ]
 
 main :: IO ()
